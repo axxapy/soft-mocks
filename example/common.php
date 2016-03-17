@@ -16,6 +16,7 @@ class Example {
 
     public function doSmthDynamic()
     {
+        declare(ticks = 1);
         return self::DYNAMIC_DO_SMTH_RESULT;
     }
 }
