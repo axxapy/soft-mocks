@@ -9,6 +9,7 @@ class SoftMocksExample
             'Example::doSmthStatic()' => Example::doSmthStatic(),
             'Example->doSmthDynamic()' => (new Example)->doSmthDynamic(),
             'Example::STATIC_DO_SMTH_RESULT' => Example::STATIC_DO_SMTH_RESULT,
+            'Example::bad_mock' => Example::bad_mock(null, ['key' => 'must return this']),
         ];
 
         return $result;
@@ -22,6 +23,8 @@ class SoftMocksExample
         \QA\SoftMocks::redefineFunction('someFunc', '$a', 'return 55 + $a;');
         \QA\SoftMocks::redefineMethod(Example::class, 'doSmthStatic', '', 'return "Example::doSmthStatic() redefined";');
         \QA\SoftMocks::redefineMethod(Example::class, 'doSmthDynamic', '', 'return "Example->doSmthDynamic() redefined";');
+
+        \QA\SoftMocks::redefineMethod(Example::class, 'bad_mock', '', 'return var_export($params, true);');
     }
 
     public static function revertMocks()

@@ -18,5 +18,10 @@ class Example {
     {
         return self::DYNAMIC_DO_SMTH_RESULT;
     }
+
+    public function bad_mock($some_var, $params = [])
+    {
+        return $params['key'];
+    }
 }
 
